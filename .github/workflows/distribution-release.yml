@@ -1,0 +1,36 @@
+name: Receive and Release Adapter
+
+on:
+  workflow_dispatch:
+    inputs:
+      tag:
+        description: "Adapter version/tag"
+        required: true
+        type: string
+      artifact_url:
+        description: "Direct download URL for the AAR"
+        required: true
+        type: string
+      adapter:
+        description: "Adapter name"
+        required: true
+        type: string
+
+jobs:
+  release:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: 📥 Download Adapter AAR
+        run: |
+          echo "Downloading ${{ github.event.inputs.adapter }} AAR from ${{ github.event.inputs.artifact_url }}"
+          curl -L -o "${{ github.event.inputs.adapter }}.aar" "${{ github.event.inputs.artifact_url }}"
+
+      - name: 🚀 Create Release in Distribution Repo
+        uses: softprops/action-gh-release@v1
+        with:
+          name: "Release ${{ github.event.inputs.tag }} for ${{ github.event.inputs.adapter }}"
+          tag_name: ${{ github.event.inputs.tag }}
+          files: "${{ github.event.inputs.adapter }}.aar"
+        env:
+          GITHUB_TOKEN: ${{ secrets.PAT_TOKEN }}
