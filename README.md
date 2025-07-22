@@ -16,7 +16,7 @@
 #### 🛠️ Build Compatibility
 - **Gradle version**: `8.5`
 - **Android Gradle Plugin**: `8.2.2`
-    - Host apps using AGP `8.0+` and Gradle `8.0+` are fully supported.
+    - Host apps using AGP `8.0+` and Gradle `8.5+` are fully supported.
 
 ---
 
