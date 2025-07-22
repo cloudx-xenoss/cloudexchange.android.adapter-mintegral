@@ -43,7 +43,7 @@ In your app/module `build.gradle` or `build.gradle.kts`:
 
 ```kotlin
 dependencies {
-    implementation("io.cloudx.adapter:adapter-mintegral:<latest-version>")
+    implementation("io.cloudx:adapter-mintegral:<latest-version>")
 }
 ```
 
